@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sports Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #0077cc;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        .search-container {
+            margin: 1rem auto;
+            max-width: 600px;
+            text-align: center;
+        }
+        .search-container input[type="text"] {
+            width: 80%;
+            padding: 0.5rem;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            max-width: 1000px;
+            margin: 1rem auto;
+            padding: 0 1rem;
+        }
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 220px;
+            padding: 1rem;
+            box-sizing: border-box;
+            transition: transform 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .card img {
+            width: 100%;
+            border-radius: 6px;
+            height: 140px;
+            object-fit: cover;
+        }
+        .card h3 {
+            margin: 0.5rem 0 0.3rem 0;
+            font-size: 1.2rem;
+            color: #333;
+        }
+        .card p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+    <style>
+        /* Additional styles for card click effect */
+        .card.clicked {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sports Blog</h1>
+    </header>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search sports..." onkeyup="filterCards()" />
+    </div>
+    <div class="cards-container" id="cardsContainer">
+        <div class="card" data-title="Cricket">
+            <img src="https://images.unsplash.com/photo-1508609349937-5ec4ae374ebf?auto=format&fit=crop&w=400&q=80" alt="Cricket" />
+            <h3>Cricket</h3>
+            <p>Latest news and updates about cricket matches and players.</p>
+        </div>
+        <div class="card" data-title="Football">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Soccerball.svg/1200px-Soccerball.svg.png" alt="Football" />
+            <h3>Football</h3>
+            <p>Insights and highlights from football leagues around the world.</p>
+        </div>
+        <div class="card" data-title="Basketball">
+            <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=400&q=80" alt="Basketball" />
+            <h3>Basketball</h3>
+            <p>Updates on basketball tournaments and player performances.</p>
+        </div>
+        <div class="card" data-title="Tennis">
+            <img src="https://images.unsplash.com/photo-1509475826633-fed577a2c71b?auto=format&fit=crop&w=400&q=80" alt="Tennis" />
+            <h3>Tennis</h3>
+            <p>Coverage of tennis matches and grand slam events.</p>
+        </div>
+        <div class="card" data-title="Hockey">
+            <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=400&q=80" alt="Hockey" />
+            <h3>Hockey</h3>
+            <p>News and updates from the world of hockey.</p>
+        </div>
+    </div>
+
+    <script>
+        function filterCards() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const title = card.getAttribute('data-title').toLowerCase();
+                if (title.includes(filter)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Add card click effect
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.add('clicked');
+                setTimeout(() => {
+                    card.classList.remove('clicked');
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>
